@@ -3,6 +3,7 @@ import './App.scss';
 import usersFromServer from './api/users';
 import productsFromServer from './api/products';
 import categoriesFromServer from './api/categories';
+import { ProductList } from './ProductList/ProductList';
 
 const getCategoriesWithUser = () => {
   return categoriesFromServer.map(category => {
@@ -26,13 +27,11 @@ export const App = () => (
               {category.title} - ({user?.name})
             </p>
 
-            <ul className="ui list">
-              {products.length ? (
-                products.map(product => <li>{product.name}</li>)
-              ) : (
-                <b>No products</b>
-              )}
-            </ul>
+            {products.length ? (
+              <ProductList products={products} />
+            ) : (
+              <b>No products</b>
+            )}
           </div>
         </div>
       </div>
